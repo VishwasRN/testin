@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Provide Values in 0 or 1</h1>
+    <div>
+      <label style="display: block" for="1">First</label>
+      <input class="f" type="text" />
+    </div>
+    <div>
+      <label style="display: block" for="2">Second</label>
+      <input class="s" type="text" />
+    </div>
+    <div>
+      <label style="display: block" for="3">Third</label>
+      <input class="t" type="text" />
+    </div>
+    <button>GO</button>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script>
+      const first = document.querySelector(".f");
+      const second = document.querySelector(".s");
+      const third = document.querySelector(".t");
+
+      const data = (user) => {
+        const data = [first.value, second.value, third.value];
+        axios
+          .post("http://localhost:3001", {
+            data,
+          })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => console.error(error));
+      };
+
+      const btn = document.querySelector("button");
+
+      btn.addEventListener("click", () => {
+        data();
+      });
+    </script>
+  </body>
+</html>
